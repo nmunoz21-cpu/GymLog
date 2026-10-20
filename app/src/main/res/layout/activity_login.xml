@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<!-- Pantalla de inicio de sesión -->
+
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:gravity="center"
+    android:padding="24dp"
+    android:background="#F2F5FA">
+
+    <!-- Título principal de la aplicación -->
+    <TextView
+        android:id="@+id/txtTitulo"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="GymLog Cloud"
+        android:textSize="28sp"
+        android:textStyle="bold"
+        android:textColor="#1D3761"
+        android:gravity="center"
+        android:layout_marginBottom="12dp" />
+
+    <!-- Descripción de la aplicación -->
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Registra tus entrenamientos en la nube"
+        android:textSize="15sp"
+        android:textColor="#58677D"
+        android:gravity="center"
+        android:layout_marginBottom="32dp" />
+
+    <!-- Campo para ingresar el usuario -->
+    <EditText
+        android:id="@+id/edtUsuario"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Nombre de usuario"
+        android:inputType="text"
+        android:singleLine="true"
+        android:maxLines="1"
+        android:autofillHints="username"
+        android:layout_marginBottom="16dp" />
+
+    <!-- Campo para ingresar la contraseña -->
+    <EditText
+        android:id="@+id/edtPassword"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Contraseña"
+        android:inputType="textPassword"
+        android:singleLine="true"
+        android:maxLines="1"
+        android:autofillHints="password"
+        android:layout_marginBottom="24dp" />
+
+    <!-- Botón para solicitar el inicio de sesión -->
+    <Button
+        android:id="@+id/btnIniciarSesion"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Iniciar sesión"
+        android:textAllCaps="false" />
+
+    <!-- Mensaje de respuesta del inicio de sesión -->
+    <TextView
+        android:id="@+id/txtMensaje"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:textColor="#C62828"
+        android:textSize="14sp"
+        android:layout_marginTop="16dp" />
+
+</LinearLayout>
