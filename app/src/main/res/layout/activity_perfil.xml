@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<!--
+    PROYECTO: GymLog Cloud
+    ARCHIVO: activity_perfil.xml
+
+    RESPONSABILIDAD:
+    Definir los componentes visuales para
+    mostrar los datos del usuario.
+-->
+
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:gravity="center"
+    android:padding="24dp"
+    android:background="#F2F5FA">
+
+    <!-- Título principal -->
+    <TextView
+        android:id="@+id/txtTituloPerfil"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Mi Perfil"
+        android:textSize="28sp"
+        android:textStyle="bold"
+        android:textColor="#1D3761"
+        android:gravity="center"
+        android:layout_marginBottom="30dp" />
+
+    <!-- Nombre recibido desde Flask -->
+    <TextView
+        android:id="@+id/txtNombre"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Nombre: sin consultar"
+        android:textSize="18sp"
+        android:textColor="#253858"
+        android:layout_marginBottom="20dp" />
+
+    <!-- Correo recibido desde Flask -->
+    <TextView
+        android:id="@+id/txtCorreo"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Correo: sin consultar"
+        android:textSize="18sp"
+        android:textColor="#253858"
+        android:layout_marginBottom="20dp" />
+
+    <!-- RUT recibido desde Flask -->
+    <TextView
+        android:id="@+id/txtRut"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="RUT: sin consultar"
+        android:textSize="18sp"
+        android:textColor="#253858"
+        android:layout_marginBottom="30dp" />
+
+    <!-- Botón para realizar GET /usuario -->
+    <Button
+        android:id="@+id/btnConsultarUsuario"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Consultar usuario"
+        android:textAllCaps="false" />
+
+    <!-- Mensajes de conexión o error -->
+    <TextView
+        android:id="@+id/txtEstadoPerfil"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:textSize="14sp"
+        android:textColor="#C62828"
+        android:layout_marginTop="16dp" />
+
+</LinearLayout>

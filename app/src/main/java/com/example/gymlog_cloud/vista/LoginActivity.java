@@ -2,6 +2,7 @@
 package com.example.gymlog_cloud.vista;
 
 import android.os.Bundle;
+import android.content.Intent;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -74,16 +75,27 @@ public class LoginActivity extends AppCompatActivity {
                     password,
                     new LoginController.LoginCallback() {
 
+
                         @Override
                         public void onExito(String mensaje) {
 
-                            // Las actualizaciones visuales deben
-                            // realizarse en el hilo principal.
+                            // Actualizamos la interfaz desde el hilo principal.
                             runOnUiThread(() -> {
+
                                 btnIniciarSesion.setEnabled(true);
                                 txtMensaje.setText(mensaje);
+
+                                // Abrimos la pantalla del perfil cuando
+                                // Flask confirma que el login fue exitoso.
+                                Intent intent = new Intent(
+                                        LoginActivity.this,
+                                        PerfilActivity.class
+                                );
+
+                                startActivity(intent);
                             });
                         }
+
 
                         @Override
                         public void onError(String mensaje) {

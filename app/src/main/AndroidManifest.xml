@@ -16,6 +16,11 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.GymLog_Cloud">
 
+        <!-- Pantalla encargada de mostrar los datos del usuario -->
+        <activity
+            android:name=".vista.PerfilActivity"
+            android:exported="false" />
+
         <!--
             LoginActivity:
             Pantalla inicial de GymLog Cloud.
