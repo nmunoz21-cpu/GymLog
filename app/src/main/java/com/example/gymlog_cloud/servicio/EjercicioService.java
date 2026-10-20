@@ -25,7 +25,7 @@ public class EjercicioService {
     // Dirección temporal para las pruebas locales.
     // Se reemplazará por la URL HTTPS de AWS.
     private static final String URL_BASE =
-            "http://10.0.2.2:5000";
+            "https://54-164-92-46.sslip.io";
 
     // Tipo de contenido utilizado para enviar JSON.
     private static final MediaType JSON =

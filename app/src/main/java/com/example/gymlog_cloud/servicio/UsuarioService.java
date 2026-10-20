@@ -26,7 +26,7 @@ public class UsuarioService {
     // Dirección temporal para pruebas con emulador.
     // Se reemplazará por HTTPS cuando configuremos AWS.
     private static final String URL_BASE =
-            "http://10.0.2.2:5000";
+            "https://54-164-92-46.sslip.io";
 
     // Tipo de contenido que enviamos al servidor.
     private static final MediaType JSON =
