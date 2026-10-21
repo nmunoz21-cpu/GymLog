@@ -36,7 +36,7 @@ public class EjercicioService {
     // Credenciales exclusivamente de demostración.
     // No utilizar credenciales reales en el código.
     private static final String USUARIO_DEMO = "nure";
-    private static final String PASSWORD_DEMO = "Demo1234";
+    private static final String PASSWORD_DEMO = "1234";
 
     private static final MediaType JSON =
             MediaType.get("application/json; charset=utf-8");
