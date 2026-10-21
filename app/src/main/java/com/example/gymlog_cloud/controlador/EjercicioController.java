@@ -1,7 +1,9 @@
 
+
 package com.example.gymlog_cloud.controlador;
 
 import com.example.gymlog_cloud.modelo.Ejercicio;
+import com.example.gymlog_cloud.modelo.Serie;
 import com.example.gymlog_cloud.servicio.EjercicioService;
 
 import org.json.JSONException;
@@ -17,18 +19,21 @@ import okhttp3.Response;
  * Controlador encargado de coordinar las operaciones
  * relacionadas con los ejercicios de GymLog Cloud.
  *
- * Responsabilidad:
- * Validar los datos, coordinar el servicio de ejercicios
- * y comunicar los resultados a las vistas.
+ * Responsabilidades:
+ * - Validar los datos de un ejercicio y sus series.
+ * - Solicitar operaciones al servicio HTTP.
+ * - Comunicar los resultados a las vistas.
+ *
+ * No realiza directamente solicitudes HTTP.
  */
 public class EjercicioController {
 
-    // Servicio responsable de la comunicación con Flask.
+    // Servicio que se comunica con Flask.
     private final EjercicioService ejercicioService;
 
     /**
-     * Interfaz que permite comunicar resultados a las
-     * vistas sin depender directamente de una Activity.
+     * Comunica los resultados del controlador
+     * sin depender directamente de una Activity.
      */
     public interface EjercicioCallback {
 
@@ -38,17 +43,17 @@ public class EjercicioController {
     }
 
     /**
-     * Inicializa el controlador y su servicio.
+     * Inicializa el servicio de ejercicios.
      */
     public EjercicioController() {
         this.ejercicioService = new EjercicioService();
     }
 
     /**
-     * Valida un ejercicio y solicita su registro en Flask.
+     * Valida los datos antes de solicitar el registro.
      *
-     * @param ejercicio Objeto con los datos del ejercicio.
-     * @param callback Comunica el resultado del registro.
+     * @param ejercicio Ejercicio que se desea registrar.
+     * @param callback Resultado de la operación.
      */
     public void registrarEjercicio(
             Ejercicio ejercicio,
@@ -60,7 +65,7 @@ public class EjercicioController {
             return;
         }
 
-        // Validamos los datos antes de enviarlos.
+        // Validamos el nombre.
         if (ejercicio.getNombre() == null
                 || ejercicio.getNombre().trim().isEmpty()) {
 
@@ -68,24 +73,38 @@ public class EjercicioController {
             return;
         }
 
-        if (ejercicio.getSeries() <= 0
-                || ejercicio.getRepeticiones() <= 0) {
+        // Verificamos que exista al menos una serie.
+        if (ejercicio.getCantidadSeries() <= 0) {
 
             callback.onError(
-                    "Las series y repeticiones deben ser mayores que cero"
+                    "El ejercicio debe tener al menos una serie"
             );
             return;
         }
 
-        if (!Double.isFinite(ejercicio.getPeso())
-                || ejercicio.getPeso() < 0
-                || ejercicio.getPeso() > 10000) {
+        // Validamos cada serie de manera independiente.
+        for (Serie serie : ejercicio.getSeries()) {
 
-            callback.onError("Ingresa un peso válido");
-            return;
+            if (serie == null || serie.getRepeticiones() <= 0) {
+
+                callback.onError(
+                        "Todas las series deben tener repeticiones mayores que cero"
+                );
+                return;
+            }
+
+            if (!Double.isFinite(serie.getPeso())
+                    || serie.getPeso() < 0
+                    || serie.getPeso() > 10000) {
+
+                callback.onError(
+                        "Todas las series deben tener un peso válido"
+                );
+                return;
+            }
         }
 
-        // Delegamos el registro al servicio HTTP.
+        // Delegamos el registro al servicio.
         ejercicioService.registrarEjercicio(
                 ejercicio,
                 new Callback() {
@@ -114,7 +133,7 @@ public class EjercicioController {
                                 return;
                             }
 
-                            // Leemos el JSON de respuesta.
+                            // Interpretamos el JSON recibido.
                             String contenido = respuesta.body().string();
                             JSONObject datos = new JSONObject(contenido);
 
@@ -149,13 +168,12 @@ public class EjercicioController {
     }
 
     /**
-     * Solicita el historial de ejercicios al servidor.
+     * Solicita los ejercicios almacenados en Flask.
      *
-     * @param callback Comunica el resultado de la consulta.
+     * @param callback Resultado de la consulta.
      */
     public void obtenerEjercicios(EjercicioCallback callback) {
 
-        // Solicitamos el historial mediante EjercicioService.
         ejercicioService.obtenerEjercicios(
                 new Callback() {
 
@@ -183,18 +201,13 @@ public class EjercicioController {
                                 return;
                             }
 
-                            // Convertimos la respuesta a JSON.
                             String contenido = respuesta.body().string();
                             JSONObject datos = new JSONObject(contenido);
 
                             if (respuesta.isSuccessful()) {
 
-                                // Entregamos el JSON a la vista.
-                                // Más adelante lo convertiremos
-                                // en una lista de objetos Ejercicio.
-                                callback.onExito(
-                                        datos.toString()
-                                );
+                                // Entregamos los datos recibidos.
+                                callback.onExito(datos.toString());
 
                             } else {
 

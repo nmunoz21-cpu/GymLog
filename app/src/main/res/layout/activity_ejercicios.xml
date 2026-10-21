@@ -1,7 +1,145 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-             android:orientation="vertical"
-             android:layout_width="match_parent"
-             android:layout_height="match_parent">
+<!--
+    PROYECTO: GymLog Cloud
+    ARCHIVO: activity_ejercicios.xml
+
+    RESPONSABILIDAD:
+    Definir la interfaz para registrar ejercicios
+    con series independientes y consultar el historial.
+
+    Los campos de cada serie se crean dinámicamente
+    desde EjerciciosActivity.java.
+-->
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="#F2F5FA">
+
+    <!-- Permite desplazarse por toda la pantalla. -->
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fillViewport="true">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="24dp">
+
+            <!-- Título principal. -->
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Mis ejercicios"
+                android:textColor="#1D3761"
+                android:textSize="28sp"
+                android:textStyle="bold"
+                android:gravity="center"
+                android:layout_marginBottom="24dp" />
+
+            <!-- Nombre del ejercicio que se registrará. -->
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Nombre del ejercicio"
+                android:textColor="#253858"
+                android:textSize="16sp"
+                android:textStyle="bold" />
+
+            <EditText
+                android:id="@+id/edtNombreEjercicio"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Ej. Press de banca"
+                android:textColor="#253858"
+                android:textColorHint="#64748B"
+                android:inputType="textCapWords"
+                android:singleLine="true"
+                android:layout_marginBottom="20dp" />
+
+            <!-- Encabezado de las series. -->
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Series del ejercicio"
+                android:textColor="#1D3761"
+                android:textSize="20sp"
+                android:textStyle="bold"
+                android:layout_marginBottom="12dp" />
+
+            <!--
+                Contenedor dinámico.
+
+                Java agregará aquí una fila por serie,
+                con sus campos de repeticiones y peso.
+            -->
+            <LinearLayout
+                android:id="@+id/contenedorSeries"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical" />
+
+            <!-- Agrega otra serie al formulario. -->
+            <Button
+                android:id="@+id/btnAgregarSerie"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="+ Agregar serie"
+                android:textAllCaps="false"
+                android:layout_marginTop="12dp" />
+
+            <!-- Registra todas las series del ejercicio. -->
+            <Button
+                android:id="@+id/btnGuardarEjercicio"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Guardar ejercicio"
+                android:textAllCaps="false"
+                android:layout_marginTop="20dp" />
+
+            <!-- Recupera los ejercicios almacenados. -->
+            <Button
+                android:id="@+id/btnConsultarEjercicios"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Consultar ejercicios"
+                android:textAllCaps="false"
+                android:layout_marginTop="8dp" />
+
+            <!-- Mensajes de registro, consulta o error. -->
+            <TextView
+                android:id="@+id/txtEstadoEjercicio"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:textColor="#253858"
+                android:textSize="14sp"
+                android:layout_marginTop="16dp" />
+
+            <!-- Sección que mostrará el historial. -->
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Ejercicios registrados"
+                android:textColor="#1D3761"
+                android:textSize="20sp"
+                android:textStyle="bold"
+                android:layout_marginTop="24dp"
+                android:layout_marginBottom="12dp" />
+
+            <TextView
+                android:id="@+id/txtListaEjercicios"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Aquí aparecerán tus ejercicios"
+                android:textColor="#253858"
+                android:textSize="16sp"
+                android:paddingBottom="24dp" />
+
+        </LinearLayout>
+    </ScrollView>
 
 </LinearLayout>

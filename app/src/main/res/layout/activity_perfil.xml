@@ -67,6 +67,14 @@
         android:layout_height="wrap_content"
         android:text="Consultar usuario"
         android:textAllCaps="false" />
+    <!-- Permite acceder a la pantalla de ejercicios -->
+    <Button
+        android:id="@+id/btnMisEjercicios"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Mis ejercicios"
+        android:textAllCaps="false"
+        android:layout_marginTop="12dp" />
 
     <!-- Mensajes de conexión o error -->
     <TextView
@@ -77,5 +85,6 @@
         android:textSize="14sp"
         android:textColor="#C62828"
         android:layout_marginTop="16dp" />
+
 
 </LinearLayout>

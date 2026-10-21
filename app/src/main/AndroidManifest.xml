@@ -20,6 +20,10 @@
         <activity
             android:name=".vista.PerfilActivity"
             android:exported="false" />
+        <!-- Pantalla de registro y consulta de ejercicios -->
+        <activity
+            android:name=".vista.EjerciciosActivity"
+            android:exported="false" />
 
         <!--
             LoginActivity:

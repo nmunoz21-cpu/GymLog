@@ -3,6 +3,7 @@ package com.example.gymlog_cloud.vista;
 import android.os.Bundle;
 import android.widget.Button;
 import android.widget.TextView;
+import android.content.Intent;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -69,11 +70,28 @@ public class PerfilActivity extends AppCompatActivity {
     /**
      * Configura el botón para consultar los datos.
      */
+    /**
+     * Configura los botones disponibles en el perfil.
+     */
     private void configurarEventos() {
 
+        // Consulta los datos del usuario desde Flask.
         btnConsultarUsuario.setOnClickListener(
                 v -> consultarUsuario()
         );
+
+        // Abre la pantalla de ejercicios.
+        Button btnMisEjercicios = findViewById(R.id.btnMisEjercicios);
+
+        btnMisEjercicios.setOnClickListener(v -> {
+
+            Intent intent = new Intent(
+                    PerfilActivity.this,
+                    EjerciciosActivity.class
+            );
+
+            startActivity(intent);
+        });
     }
 
     /**
